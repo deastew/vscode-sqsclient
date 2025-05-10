@@ -1,0 +1,77 @@
+{
+  "name": "aws-sqs-client",
+  "displayName": "AWS SQS Client",
+  "description": "Send and receive SQS messages within VS Code",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.99.3"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:sqs"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "sqs",
+        "aliases": ["SQS", "sqs"],
+        "extensions": [".sqs"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "aws-sqs-client.sendSQSCommand",
+        "title": "Send SQS Command"
+      },
+      {
+        "command": "aws-sqs-client.receiveSQSMessages",
+        "title": "Receive SQS Messages"
+      },
+      {
+        "command": "aws-sqs-client.purgeSQSQueue",
+        "title": "Purge SQS Queue"
+      }
+    ],
+    "configuration": {
+      "title": "AWS SQS Client",
+      "properties": {
+        "awsSQSClient.defaultProfile": {
+          "type": "string",
+          "default": "default",
+          "description": "Default AWS profile to use"
+        },
+        "awsSQSClient.defaultRegion": {
+          "type": "string",
+          "default": "us-east-1",
+          "description": "Default AWS region to use"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.54.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.5.2"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1534.0"
+  }
+}

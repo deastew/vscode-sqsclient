@@ -1,0 +1,52 @@
+# Example SQS commands
+# Format: COMMAND QUEUE_URL 
+# profile: PROFILE_NAME 
+# region: REGION_NAME
+
+# Send a message to a queue
+SEND https://sqs.us-east-1.amazonaws.com/123456789012/my-queue
+profile: my-aws-profile
+region: us-east-1
+
+{
+  "message": "Hello, SQS!",
+  "timestamp": "2025-05-10T12:00:00Z",
+  "priority": "high"
+}
+###
+
+# Receive messages from a queue with options
+RECEIVE https://sqs.us-east-1.amazonaws.com/123456789012/my-queue
+profile: my-aws-profile
+region: us-east-1
+max-messages: 5
+visibility-timeout: 60
+wait-time: 10
+###
+
+# Purge all messages from a queue
+PURGE https://sqs.us-east-1.amazonaws.com/123456789012/my-queue
+profile: my-aws-profile
+region: us-east-1
+###
+
+# Using default profile and region
+SEND https://sqs.us-east-1.amazonaws.com/123456789012/another-queue
+{
+  "message": "This uses default profile and region",
+  "timestamp": "2025-05-10T12:30:00Z"
+}
+###
+
+# Example with real-world looking queue URL and parameters
+SEND https://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/customs-compliance-uk-ens-unit-on-terminal-v2-local
+profile: localstack
+region: us-east-1
+
+{
+  "BookingId": "99e9b997-0942-4a6c-bd17-12bc890a55b5",
+  "MvsId": "42d43c9d-eaad-4b15-bb13-1f617715f08e",
+  "RouteId": "FRCQFGBDVR",
+  "DateTime": "2025-04-29T08:45:00Z"
+}
+###
