@@ -1,7 +1,7 @@
 {
-  "name": "aws-sqs-client",
-  "displayName": "AWS SQS Client",
-  "description": "Send and receive SQS messages within VS Code",
+  "name": "sqs-client",
+  "displayName": "SQS Client",
+  "description": "SQS Client for Visual S Code",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.99.3"
@@ -24,27 +24,27 @@
     ],
     "commands": [
       {
-        "command": "aws-sqs-client.sendSQSCommand",
+        "command": "sqs-client.sendSQSCommand",
         "title": "Send SQS Command"
       },
       {
-        "command": "aws-sqs-client.receiveSQSMessages",
+        "command": "sqs-client.receiveSQSMessages",
         "title": "Receive SQS Messages"
       },
       {
-        "command": "aws-sqs-client.purgeSQSQueue",
+        "command": "sqs-client.purgeSQSQueue",
         "title": "Purge SQS Queue"
       }
     ],
     "configuration": {
-      "title": "AWS SQS Client",
+      "title": "SQS Client",
       "properties": {
-        "awsSQSClient.defaultProfile": {
+        "sqs-client.defaultProfile": {
           "type": "string",
           "default": "default",
           "description": "Default AWS profile to use"
         },
-        "awsSQSClient.defaultRegion": {
+        "sqs-client.defaultRegion": {
           "type": "string",
           "default": "us-east-1",
           "description": "Default AWS region to use"

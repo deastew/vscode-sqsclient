@@ -83,8 +83,8 @@ You can configure default AWS profile and region in your VS Code settings:
 
 ```json
 {
-  "awsSQSClient.defaultProfile": "default",
-  "awsSQSClient.defaultRegion": "us-east-1"
+  "sqs-client.defaultProfile": "default",
+  "sqs-client.defaultRegion": "us-east-1"
 }
 ```
 
@@ -99,8 +99,8 @@ If you don't specify a profile or region in your .sqs file, these default values
 
 This extension contributes the following settings:
 
-* `awsSQSClient.defaultProfile`: Default AWS profile to use
-* `awsSQSClient.defaultRegion`: Default AWS region to use
+* `sqs-client.defaultProfile`: Default AWS profile to use
+* `sqs-client.defaultRegion`: Default AWS region to use
 
 ## Known Issues
 

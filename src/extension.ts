@@ -55,18 +55,18 @@ class SQSCommandCodeLensProvider implements vscode.CodeLensProvider {
                 new vscode.Position(firstLine, 0)
             );
 
-            const title = `Send ${command.type} Command`;
+            const title = `Send Request`;
             let commandId = '';
             
             switch (command.type) {
                 case 'SEND':
-                    commandId = 'aws-sqs-client.sendSQSCommand';
+                    commandId = 'sqs-client.sendSQSCommand';
                     break;
                 case 'RECEIVE':
-                    commandId = 'aws-sqs-client.receiveSQSMessages';
+                    commandId = 'sqs-client.receiveSQSMessages';
                     break;
                 case 'PURGE':
-                    commandId = 'aws-sqs-client.purgeSQSQueue';
+                    commandId = 'sqs-client.purgeSQSQueue';
                     break;
             }
 
@@ -134,8 +134,8 @@ function parseSQSCommands(document: vscode.TextDocument): SQSCommand[] {
                 type: commandType,
                 queueUrl,
                 // Default values that might be overridden
-                profile: vscode.workspace.getConfiguration('awsSQSClient').get('defaultProfile') || 'default',
-                region: vscode.workspace.getConfiguration('awsSQSClient').get('defaultRegion') || 'us-east-1'
+                profile: vscode.workspace.getConfiguration('sqs-client').get('defaultProfile') || 'default',
+                region: vscode.workspace.getConfiguration('sqs-client').get('defaultRegion') || 'us-east-1'
             };
             
             commandBodyStartLine = i;
@@ -300,7 +300,7 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     // Register the SEND command
-    const sendCommand = vscode.commands.registerCommand('aws-sqs-client.sendSQSCommand', async (command: SQSCommand) => {
+    const sendCommand = vscode.commands.registerCommand('sqs-client.sendSQSCommand', async (command: SQSCommand) => {
         try {
             vscode.window.showInformationMessage(`Sending message to ${command.queueUrl}`);
 
@@ -330,7 +330,7 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     // Register the RECEIVE command
-    const receiveCommand = vscode.commands.registerCommand('aws-sqs-client.receiveSQSMessages', async (command: SQSCommand) => {
+    const receiveCommand = vscode.commands.registerCommand('sqs-client.receiveSQSMessages', async (command: SQSCommand) => {
         try {
             vscode.window.showInformationMessage(`Receiving messages from ${command.queueUrl}`);
             
@@ -360,7 +360,7 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     // Register the PURGE command
-    const purgeCommand = vscode.commands.registerCommand('aws-sqs-client.purgeSQSQueue', async (command: SQSCommand) => {
+    const purgeCommand = vscode.commands.registerCommand('sqs-client.purgeSQSQueue', async (command: SQSCommand) => {
         try {
             // Show a confirmation dialog
             const confirmation = await vscode.window.showWarningMessage(
