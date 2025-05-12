@@ -1,0 +1,74 @@
+{
+  "name": "AWS SQS",
+  "scopeName": "source.sqs",
+  "fileTypes": [
+    "sqs"
+  ],
+  "patterns": [
+    {
+      "include": "#comment"
+    },
+    {
+      "include": "#command-line"
+    },
+    {
+      "include": "#parameter"
+    },
+    {
+      "include": "#json"
+    },
+    {
+      "include": "#delimiter"
+    }
+  ],
+  "repository": {
+    "comment": {
+      "match": "^\\s*(#).*$",
+      "name": "comment.line.sqs",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.comment.sqs"
+        }
+      }
+    },
+    "command-line": {
+      "match": "^(SEND|RECEIVE|PURGE)\\s+(https?://[^\\s]+)",
+      "captures": {
+        "1": {
+          "name": "keyword.control.sqs"
+        },
+        "2": {
+          "name": "variable.other.url.sqs"
+        }
+      }
+    },
+    "parameter": {
+      "match": "^(profile|region|max-messages|visibility-timeout|wait-time)\\s*(:)\\s*(.+)$",
+      "captures": {
+        "1": {
+          "name": "entity.name.function.sqs"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.sqs"
+        },
+        "3": {
+          "name": "string.unquoted.sqs"
+        }
+      }
+    },
+    "json": {
+      "begin": "^\\s*\\{",
+      "end": "\\}",
+      "name": "meta.embedded.block.json",
+      "patterns": [
+        {
+          "include": "source.json"
+        }
+      ]
+    },
+    "delimiter": {
+      "match": "^(###)\\s*$",
+      "name": "keyword.operator.delimiter.sqs"
+    }
+  }
+}

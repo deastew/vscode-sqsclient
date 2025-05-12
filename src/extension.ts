@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { SQSCommand } from './models/sqsTypes';
 import { SQSCommandCodeLensProvider } from './providers/sqsCodeLensProvider';
+import { SQSDocumentSymbolProvider } from './providers/sqsDocumentSymbolProvider';
 import { SQSService } from './services/sqsService';
 import { createOutputPanel, getHtmlForResponse } from './views/responseView';
 
@@ -12,6 +13,12 @@ export function activate(context: vscode.ExtensionContext) {
     const codeLensProvider = new SQSCommandCodeLensProvider();
     context.subscriptions.push(
         vscode.languages.registerCodeLensProvider({ language: 'sqs', scheme: 'file' }, codeLensProvider)
+    );
+
+    // Register the Document Symbol provider for syntax highlighting
+    const documentSymbolProvider = new SQSDocumentSymbolProvider();
+    context.subscriptions.push(
+        vscode.languages.registerDocumentSymbolProvider({ language: 'sqs', scheme: 'file' }, documentSymbolProvider)
     );
 
     // Register the SEND command

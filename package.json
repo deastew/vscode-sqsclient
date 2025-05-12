@@ -22,6 +22,13 @@
         "configuration": "./language-configuration.json"
       }
     ],
+    "grammars": [
+      {
+        "language": "sqs",
+        "scopeName": "source.sqs",
+        "path": "./syntaxes/sqs.tmLanguage.json"
+      }
+    ],
     "commands": [
       {
         "command": "sqs-client.sendSQSCommand",
