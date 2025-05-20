@@ -1,8 +1,12 @@
 {
   "name": "sqs-client",
   "displayName": "SQS Client",
-  "description": "SQS Client for Visual S Code",
+  "description": "SQS Client for Visual Studio Code",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deastew/vscode-sqsclient.git"
+  },
   "engines": {
     "vscode": "^1.99.3"
   },
